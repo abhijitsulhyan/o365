@@ -46,7 +46,7 @@ router.get('/',
   }
 );
 
-router.get('/load10',
+router.post('/load10',
     async function(req, res) {
               try {
                   // Get the events
