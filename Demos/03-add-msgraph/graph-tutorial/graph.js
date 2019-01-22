@@ -31,9 +31,9 @@ module.exports = {
         return events;
     },
 
-    loadFiles: async function(accessToken, count) {
+        loadFiles: async function(accessToken, count) {
     const client = getAuthenticatedClient(accessToken);
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < 10000; i++) {
             console.log("Writing = " + i);
 
             var fileName = 'test' + i + '.txt';
@@ -51,41 +51,18 @@ module.exports = {
             }
 
 
-
-            // fs.open(path, 'w', function(err, fd) {
-            //     if (err) {
-            //         throw 'error opening file: ' + err;
-            //     }
-            //
-            //     fs.writeFileSync(fd, buffer, 0, buffer.length, null, function(err) {
-            //         if (err) throw 'error writing file: ' + err;
-            //         fs.close(fd, function() {
-            //             console.log('file written');
-            //
-            //         })
-            //
-            //
-            //     });
-            // });
-
-
             let stream = fs.createReadStream(path); //path to local file
 
             const events = await client
-                .api('/me/drive/root:/jan22:/children/' + fileName +'/content')
+                .api('/me/drive/root:/jan21:/children/' + fileName +'/content')
                 .putStream(stream, (err) => {
                 console.log(err);
-            })
-            ;
-            stream.close();
-
-
-            //sleep.msleep(100)
-            //sleep.msleep(101)
+            });
 
         }
 
-    }
+    }	
+
 
 
 };
